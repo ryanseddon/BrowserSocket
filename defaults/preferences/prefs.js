@@ -1,0 +1,1 @@
+//pref("browersocket.launch", "auto");

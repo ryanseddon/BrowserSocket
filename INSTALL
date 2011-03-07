@@ -1,0 +1,17 @@
+To build the extension do the following:
+
+Download the following Crypto-JS library files from http://code.google.com/p/crypto-js/downloads/list
+    - 2.0.0-crypto.js
+    - 2.0.0-md5.js
+Place the files under chrome/content
+
+Run make
+
+An xpi file should appear in the root directory.
+
+To install the extension:
+
+Drag the xpi file to Firefox window.
+Follow instructions.
+
+The extension is known to work on some Firefox 4 beta versions.

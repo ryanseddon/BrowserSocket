@@ -1,0 +1,20 @@
+groupbox caption {
+    font-weight: bold;
+    font-size: 120%;
+    }
+label#bsToolsStatusLabel {
+    font-size: 120%;
+    vertical-align: middle;
+    }
+#bsToolsPortLabel {
+    font-size: 110%;
+    color: #0a0;
+    line-height: 1;
+    padding: 1px;
+    font-weight: bold;
+    }
+#bsToolsDebugCheckbox {
+    margin-left: 42px;
+    margin-top: 0;
+    }
+

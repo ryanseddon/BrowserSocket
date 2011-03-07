@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<overlay id="bsOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <script src="chrome://browsersocket/content/browsersocket.js"/>
+    <script src="chrome://browsersocket/content/utf-8.js"/>
+
+    <menupopup id="menu_ToolsPopup">
+        <menuitem oncommand="browsersocket.tools.open()"
+            label="BrowserSocket..." id="menuitem-browsersocket"
+            insertafter="devToolsSeparator" class="menuitem-iconic"
+            accesskey="B"/>
+    </menupopup>
+
+    <statusbar id="status-bar" class="chromeclass-status">
+        <statusbarpanel id="bsTextPanel" class="statusbarpanel-text" label="BrowserSocket" tooltiptext="BrowserSocket" onclick="browsersocket.tools.open()" />
+    </statusbar>
+</overlay>

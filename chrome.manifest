@@ -1,0 +1,13 @@
+content	browsersocket	chrome/content/
+locale	browsersocket	en	chrome/locale/en/
+overlay	chrome://browser/content/browser.xul	chrome://browsersocket/content/browsersocket.xul
+
+component {e289069e-c25a-11df-a4c5-c14edfd72085} components/BrowserSocket.js
+contract @hiit.fi/browsersocket;1 {e289069e-c25a-11df-a4c5-c14edfd72085}
+
+component {3e3491a0-a6dd-11df-981c-0800200c9a66} components/BrowserSocketServer.js
+contract @hiit.fi/browsersocketserver;1 {3e3491a0-a6dd-11df-981c-0800200c9a66}
+
+component {e62ad13e-c25e-11df-892e-6d54dfd72085} components/BrowserSocketConnection.js
+contract @hiit.fi/browsersocketconnection;1 {e62ad13e-c25e-11df-892e-6d54dfd72085}
+

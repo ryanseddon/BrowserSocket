@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://browsersocket/content/browsersocket.css" type="text/css"?>
+<window id="bsToolsWindow"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        contenttitlesetting="true"
+        title="BrowserSocket Control Panel"
+        >
+
+    <script language="JavaScript" src="chrome://browsersocket/content/browsersocket.js"/>
+    <script language="JavaScript">
+        try{window.addEventListener("load", browsersocket.tools.init, false);}catch(e){}
+        //[TODO: should this be event-driven rather than polling?]
+        window.setInterval(
+            browsersocket.tools.ui.draw,
+            browsersocket.tools.ui.INTERVAL_MS);
+    </script>
+
+    <vbox flex="10" height="100%">
+        <vbox>
+            <groupbox>
+                <caption label="Status"/>
+                <hbox>
+                    <image id="bsToolsStatusIcon" src="chrome://browsersocket/content/warning_32.png" width="32" height="29"/>
+                    <label id="bsToolsStatusLabel" value=""/>
+                    <label id="bsToolsPortLabel" value=""/>
+                </hbox>
+                <checkbox id="bsToolsDebugCheckbox" label="Debug mode" oncommand="browsersocket.tools.toggleDebug()"/>
+                <hbox pack="end">
+                    <button label="Stop" id="bsToolsToggleServerButton" oncommand="browsersocket.tools.toggleServer(event)"/>
+                </hbox>
+            </groupbox>
+        </vbox>
+        <vbox>
+            <groupbox>
+                <caption label="Registered Sockets"/>
+                <vbox>
+                    <tree id="socketsTree" rows="4" seltype="single" disabled="true">
+                        <treecols>
+                            <treecol id="handlerCol" label="Resource" flex="1"/>
+                            <treecol id="urlCol" label="Source URL" flex="1"/>
+                            <treecol id="registeredCol" label="Registered" flex="1"/>
+                        </treecols>
+                        <treechildren/>
+                    </tree>
+                </vbox>
+                <hbox pack="end">
+                    <button label="Destroy Server" id="bsToolsStopSocketButton" oncommand="browsersocket.tools.destroySocket(event)"/>
+                </hbox>
+            </groupbox>
+        </vbox>
+
+        <vbox width="100%">
+            <groupbox>
+                <caption label="Connections"/>
+                <vbox>
+                    <tree id="connectionsTree" rows="4" seltype="single" disabled="true">
+                        <treecols>
+                            <treecol id="handlerCol" label="Server" flex="1"/>
+                            <treecol id="hostCol" label="Host" flex="1"/>
+                            <treecol id="portCol" label="Port" flex="1"/>
+                            <treecol id="connectionCol" label="Connected" flex="1"/>
+                        </treecols>
+                        <treechildren/>
+                    </tree>
+                </vbox>
+                <hbox pack="end">
+                    <button label="Destroy Connection" id="bsToolsCloseConnectionButton" oncommand="browsersocket.tools.destroyConnection(event)"/>
+                </hbox>
+            </groupbox>
+        </vbox>
+    </vbox>
+</window>
+
+
