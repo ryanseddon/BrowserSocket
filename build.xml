@@ -29,10 +29,5 @@
     <delete file="${ExtensionName}" />  
     </target>
 
-    <target name="check-crypto">
-    <available file="${crypto}" property="crypto.js.present"/>
-    <available file="${md5}" property="md5.js.present"/>
-    </target>
-
-    <target name="rebuild" depends="check-crypto,clean,archive" description="Delete and re-create archive file." if="crypto.js.present,md5.js.present" />   
+    <target name="rebuild" depends="clean,archive" description="Delete and re-create archive file." />   
 </project>
