@@ -3,3 +3,4 @@ browsersocket-1.2.xpi
 chrome/content/2.0.0-crypto.js
 chrome/content/2.0.0-md5.js
 chrome/content/utf-8.js
+build.bat

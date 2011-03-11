@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<project name="BrowserSocket" default="archive" basedir=".">  
+    <description>  
+    Archive simple project files
+    </description>  
+
+    <property name="Version" value="1.3.4d" />
+    <property name="ExtensionName" value="browsersocket-${Version}.xpi" />
+    <property name="crypto" value="./chrome/content/2.0.0-crypto.js" />
+    <property name="md5" value="./chrome/content/2.0.0-md5.js" />
+
+    <target name="archive" description="Archive simple project into zip file.">  
+
+    <!-- Update version number in install.rdf file -->
+    <replaceregexp file="install.rdf"
+       match="&lt;em:version&gt;\S+&lt;/em:version&gt;"
+       replace="&lt;em:version&gt;${Version}&lt;/em:version&gt;"
+       byline="true"
+    />
+
+    <!-- xpi files are just zips -->
+    <zip destfile="${ExtensionName}"
+       basedir="."
+       excludes="build.xml, build.bat, .gitignore, .git/**"
+    />
+    </target>
+
+    <target name="clean" description="Delete archive.">  
+    <delete file="${ExtensionName}" />  
+    </target>
+
+    <target name="check-crypto">
+    <available file="${crypto}" property="crypto.js.present"/>
+    <available file="${md5}" property="md5.js.present"/>
+    </target>
+
+    <target name="rebuild" depends="check-crypto,clean,archive" description="Delete and re-create archive file." if="crypto.js.present,md5.js.present" />   
+</project>
