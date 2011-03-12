@@ -54,7 +54,7 @@ Install it in either Firefox 3.6 or 4, you can grab the [latest build](https://g
 
 Once installed run my jsconsole fork in Firefox and create a BrowserSocket instance by using <code>:createServer</code> command. This will generate a socket that you can connect to and give you the address to use.
 
-##3 Connecting the client to a BrowserSocket
+### Connecting the client to a BrowserSocket
 
 To connect to the BrowserSocket make sure your device is on the same network and it supports WebSockets. Load the remote debug bookmarklet, enter the socket address and your off.
 
