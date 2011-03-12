@@ -1,11 +1,11 @@
 BrowserSocket
 =============
 
-### A Firefox plugin to create a socket server in the browser that other browser can connect to using the WebSocket API
+# A Firefox plugin to create a socket server in the browser that other browser can connect to using the WebSocket API
 
 ## BrowserSocket API
 
-# Server (Really just firefox with the BrowserSocket plugin)
+### Server (Really just firefox with the BrowserSocket plugin)
 
 Once the extension is installed it will expose the <code>BrowserSocket()</code> constructor, which works very similar to the WebSocket constructor.
 
@@ -35,7 +35,7 @@ To send messages to the BrowserSocket you use the <code>send</code> method.
 
   bs.send("message to send");
   
-# Client
+### Client
 
 The client has to be a WebSocket supporting browser in order to connect and communicate with the BrowserSocket.
 
