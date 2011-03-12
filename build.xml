@@ -4,7 +4,7 @@
     Archive simple project files
     </description>  
 
-    <property name="Version" value="1.3.4d" />
+    <property name="Version" value="1.3.5.1" />
     <property name="ExtensionName" value="browsersocket-${Version}.xpi" />
     <property name="crypto" value="./chrome/content/2.0.0-crypto.js" />
     <property name="md5" value="./chrome/content/2.0.0-md5.js" />

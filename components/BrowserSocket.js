@@ -6,6 +6,7 @@ const Ci = Components.interfaces;
 
 function BrowserSocket() {
     this.uid = null;
+    this.hosts = null;
     this.port = null;
     this.resourcePrefix = null;
     this.onerror = null;

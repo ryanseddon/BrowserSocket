@@ -42,15 +42,17 @@ BrowserSocketServer.prototype = {
     },
 
     listen: function(HandlerFactory, document) {
-        var uid = Math.floor(Math.random() * Math.pow(10, 9));
-        var bs = Cc['@hiit.fi/browsersocket;1']
+        var uid = Math.floor(Math.random() * Math.pow(10, 9)),
+            that = this,
+            bs = Cc['@hiit.fi/browsersocket;1']
                  .createInstance().wrappedJSObject;
+        
+        bs.hosts = this.hosts();
         bs.uid = uid;
         bs.port = this.serverSocket.port;
         bs.resourcePrefix = BrowserSocketServer.RESOURCE_PREFIX_PREFIX + uid + '/';
         
 
-        var that = this;
         bs.stop = function() {
             that.closeSocket(this.uid);
         }
@@ -66,7 +68,7 @@ BrowserSocketServer.prototype = {
             sourceURI: document.location.toString(),
             ts: (new Date()).getTime(),
             bs: bs
-        }
+        };
 
         this.sockets[uid] = meta;
         this.debug("Added socket: " + uid + ', ' + document);
@@ -218,6 +220,23 @@ BrowserSocketServer.prototype = {
             }
             this.error(ex);
         }
+    },
+    hosts: function() {
+        // Find users local IP and return an array if more than one or string if only one is found
+        var dnsService = Cc["@mozilla.org/network/dns-service;1"]
+                         .getService(Ci.nsIDNSService),
+        
+        hosts = dnsService.resolve(dnsService.myHostName, false), 
+        ips = [], re = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
+
+        while (hosts && hosts.hasMore()) {
+            var addr = hosts.getNextAddrAsString();
+            if(re.test(addr)) {
+                ips.push(addr);
+            }
+        }
+        
+        return (ips.length === 1) ? ips[0] : ips;
     },
     port: function() {
         return this.serverSocket.port;
