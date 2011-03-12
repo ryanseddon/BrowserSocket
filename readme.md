@@ -58,7 +58,7 @@ Once installed run my jsconsole fork in Firefox and create a BrowserSocket insta
 
 To connect to the BrowserSocket make sure your device is on the same network and it supports WebSockets. Load the remote debug bookmarklet, enter the socket address and your off.
 
-	javascript:(function(doc)%20{var%20script%20=%20document.createElement('script');script.src%20=%20'http://labs.thecssninja.com/jsconsole/client.js';doc.body.appendChild(script);})(this.document);
+	javascript:(function(doc)%20{var%20script%20=%doc.createElement('script');script.src%20=%20'http://labs.thecssninja.com/jsconsole/client.js';doc.body.appendChild(script);})(this.document);
 
 ### More info
 
