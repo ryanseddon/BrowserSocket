@@ -4,10 +4,10 @@
     Archive simple project files
     </description>  
 
-    <property name="Version" value="1.3.5.2" />
+    <property name="Version" value="1.3.6.0" />
     <property name="ExtensionName" value="browsersocket-${Version}.xpi" />
     <property name="crypto" value="./chrome/content/2.0.0-crypto.js" />
-    <property name="md5" value="./chrome/content/2.0.0-md5.js" />
+    <property name="sha1" value="./chrome/content/2.0.0-sha1.js" />
 
     <target name="archive" description="Archive simple project into zip file.">  
 

@@ -348,54 +348,25 @@ BrowserSocketConnection.prototype = {
         this.server.debug("\t\t\tcomputeHandshake()");
         //TODO: serious validation
 
-        var key1 = req.headers['sec-websocket-key1'];
-        var key2 = req.headers['sec-websocket-key2'];
-        var body = req.body;
-        var solution = this.solve(key1, key2, body);
-
-        var host = req.headers['host'];
-        var resource = req.resource;
-        var origin = req.headers['origin'];
-        var protocol = req.headers['sec-websocket-protocol'];
+        var key = req.headers['Sec-WebSocket-Key'],
+            host = req.headers['Host'],
+            origin = req.headers['Sec-WebSocket-Origin'],
+            protocol = req.headers['Sec-Websocket-Protocol'];
 
         /* formulate the response */
         var res = new this.server.lib.http.Response();
-        res.body = solution;
-        res.firstLine = 'HTTP/1.1 101 WebSocket Protocol Handshake';
-     
-        res.headers['Upgrade'] = 'WebSocket';
+
+        res.firstLine = 'HTTP/1.1 101 Switching Protocols';
+        res.headers['Upgrade'] = 'websocket';
         res.headers['Connection'] = 'Upgrade';
-     
-        res.headers['Sec-WebSocket-Location'] = "ws://" + host + resource;
-        res.headers['Sec-WebSocket-Origin'] = origin;
+        res.headers['Sec-WebSocket-Accept'] = btoa(Crypto.SHA1(key + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11", { asString: true }));
      
         /* //[If the server wants to implement this, it must override the handshakeResponseLoop]
-        if (req.headers['sec-websocket-protocol']) {
-            res.headers['Sec-WebSocket-Protocol'] = protocol;
-        }
-        */
-     
+                if (req.headers['sec-websocket-protocol']) {
+                    res.headers['Sec-WebSocket-Protocol'] = protocol;
+                }
+                */
         return res;
-    },
-    solve: function(key1, key2, body) {
-        this.server.debug("\t\t\tsolve()");
-        var key_number_1 = this.extractDigits(key1);
-        var key_number_2 = this.extractDigits(key2);
-     
-        var spaces_1 = this.numSpaces(key1);
-        var spaces_2 = this.numSpaces(key2);
-      
-        var part_1 = key_number_1 / spaces_1;
-        var part_2 = key_number_2 / spaces_2;
-      
-        // convert numbers to byte arrays
-        var pp1 = this.packToArray(part_1);
-        var pp2 = this.packToArray(part_2);
-        var pp3 = body;
-      
-        // join the byte arrays and calculate md5 hash
-        var challenge = pp1.concat(pp2, pp3);
-        return this.server.lib.Crypto.MD5(challenge, {asString: true});
     },
     numSpaces: function(s) {
         var ret = 0;

@@ -177,7 +177,7 @@ BrowserSocketServer.prototype = {
             */
             this.window = {};
             loader.loadSubScript("chrome://browsersocket/content/2.0.0-crypto.js", this);
-            loader.loadSubScript("chrome://browsersocket/content/2.0.0-md5.js", this.window);
+            loader.loadSubScript("chrome://browsersocket/content/2.0.0-sha1.js", this.window);
 
             this.lib.Crypto = this.window.Crypto;
             this.debug("Crypto: " + this.lib.Crypto);
